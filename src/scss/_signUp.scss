@@ -1,0 +1,58 @@
+.signUpContainer {
+text-align: center;
+}
+.h2SignUp{
+    margin: 3%;
+}
+.userLogo {
+    margin-top: 3%;
+    width: 10%;
+}
+
+.signUpContainer h2 {
+    margin-bottom: 2%;
+}
+
+.firstName, .lastName {
+    color:#2278cf;
+    border-radius: 4px;
+    border: solid 2px lightgrey;
+    height: 10%;
+    width: 30%;
+    margin: 1% 1%;
+    box-sizing: border-box;
+    padding: 10px;
+    font-size: 2em;
+}
+
+.email, .password {
+    color:#2278cf;
+    border-radius: 4px;
+    border: solid 2px lightgrey;
+    height: 10%;
+    width: 62%;
+    margin: 1% 1%;
+    box-sizing: border-box;
+    font-size: 2em;
+    padding: 10px;
+}
+
+.signUp {
+    background-color: #2278cf;
+    color: white;
+    font-size: 2em;
+    border-radius: 6px;
+    border: none;
+    height: 10%;
+    width: 62%;
+    box-sizing: border-box;
+}
+
+.checkBox {
+    width: 20px;
+}
+
+.signUpContainer p {
+font-size: 1.2em;
+color: darkgray;
+}

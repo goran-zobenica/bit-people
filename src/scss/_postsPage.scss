@@ -1,0 +1,24 @@
+.postsPage{
+    h2 {
+       
+        font-size: 32px;
+        margin:20px
+        }
+}
+
+.searchImage{
+    margin: 5px;
+    width:40px;
+}
+
+.searchBar{
+    border: none;
+    border-bottom: 1px solid grey;
+    box-sizing: content-box;
+    margin: 10px auto;
+    width: 90%;
+    height: 50px;
+    font-size: 32px;
+    line-height: 50px;
+    padding: 5px;
+}

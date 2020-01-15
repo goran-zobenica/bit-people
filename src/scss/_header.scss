@@ -1,0 +1,54 @@
+.header {
+    background-color: #2278cf;
+}
+
+.logoBitCrud {
+    display: block;
+    color: white;
+    margin: 0;
+    font-size: 2em;
+    line-height: 70px;
+    float: left;
+}
+
+.userName{
+    position: absolute;
+    color: white;
+    top: 0;
+    right: 30px;
+}
+
+.navBarHeader {
+    vertical-align: middle;
+    height: 100%;
+}
+
+    .postsHeader,
+    .aboutHeader {
+        float: right;
+        margin: 40px 10px 10px;
+        height: 30px;
+        background-color: #2278cf;
+        color: white;
+        border: none;
+        &:hover{
+            transform: scale(1.2);
+        }
+    }
+
+    @media only screen and (max-width: 768px) {
+    
+       .header .logoBitCrud {
+           margin-top: 10px;
+            text-align: center;
+            float: none;   
+        }
+        .header .postsHeader, .aboutHeader {
+            float: none;
+           align-items: center;
+           margin: 0px 10px 20px;
+        }
+        .navBarHeader{
+            text-align: center;
+        }
+    }

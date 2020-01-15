@@ -1,0 +1,49 @@
+.headStyle{
+    color: lightgray;
+}
+.inputTitleName {
+    width: 50%;
+    border: none;
+    border-bottom: 2px #2fa69a solid;
+    margin-bottom: 30px;
+}
+.inputSubtitleName {
+    width: 50%;
+    border: none;
+    border-bottom: 2px #2fa69a solid;
+    margin-bottom: 30px;
+}
+.enterImageURL {
+    width: 50%;
+    border: none;
+    border-bottom: 2px #2fa69a solid;
+    margin-bottom: 30px;
+}
+.inputTextOfPost {
+    width: 100%;
+    border: none;
+    border-bottom: 2px #2fa69a solid;
+    margin-bottom: 30px;
+}
+.deletePost {
+    float:right;
+    width: 15%;
+    height: 6%;
+    background-color: #e65490;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+.savePost {
+    float:right;
+    width: 15%;
+    height: 6%;
+    background-color: #2fa69a;
+    color: white;
+    border-radius: 5px;
+    border: none;
+    margin-left: 10px;
+    margin-right: 10px;
+}

@@ -1,0 +1,22 @@
+.footer {
+    height: 50px;
+    background-color: #2278cf;
+
+    h4 {
+        color: white;
+        font-size: 16px;
+        float: left;
+        line-height: 50px;
+    }
+
+    .signInButton {
+        color: white;
+        font-size: 16px;
+        float: right;
+        line-height: 50px;
+        background-color: #2278cf;
+        border: none;
+        height: 100%;
+        padding: 0px 10px ;
+    }
+}
