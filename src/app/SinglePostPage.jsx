@@ -6,6 +6,7 @@ import Loader from './components/Loader'
 import Message from './components/Message'
 import { popUp } from '../shared/popUpMessage'
 
+
 class SinglePostPage extends React.Component {
     constructor(props) {
         super(props)

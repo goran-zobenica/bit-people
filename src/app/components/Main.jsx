@@ -20,7 +20,7 @@ const Main = (props) => {
                 <Switch>
                     <Route exact path="/posts" component={PostsPage} />
                     <Route exact path="/about" component={About} />
-                    <Route exact path="/login" render={() => <SignInPage changeLogStatus={props.changeLogStatus} />} />
+                    <Route exact path="/login" render={() => <SignInPage changeLogStatus={props.changeLogStatus} changeUserName={props.changeUserName} />} />
                     <Route exact path="/newUser" component={SignUpPage} />
                     <Redirect exact path="/" to="/posts" />
                     <PrivateRoute>

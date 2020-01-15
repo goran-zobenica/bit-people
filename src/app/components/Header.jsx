@@ -2,7 +2,7 @@ import React from 'react';
 import Button from './Button'
 import { Link } from "react-router-dom";
 
-const Header = () => {
+const Header = (props) => {
 
     const isLogged = !!localStorage.getItem("isLogged");
 
@@ -10,7 +10,7 @@ const Header = () => {
     let button2 = isLogged ? "My Posts" : "About"
     let link1 = isLogged ? "/dashboard" : "/posts"
     let link2 = isLogged ? "/myposts" : "/about"
-    let user = isLogged ? `Logged as: ${localStorage.getItem("userName")}` : ""
+    let user = isLogged ? `Logged as: ${props.userName}` : ""
 
     return (
         <header className="header row">

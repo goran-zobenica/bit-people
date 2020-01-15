@@ -41,6 +41,7 @@ const SignInPage = (props) => {
                         .then(result => {
                             localStorage.setItem("userId", result[0].id)
                             localStorage.setItem("userName", `${result[0].name.first}`)
+                            props.changeUserName(result[0].name.first)
                             props.history.push('/dashboard/')
                         })
                 }

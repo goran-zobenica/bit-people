@@ -18,7 +18,7 @@ const Footer = (props) => {
         localStorage.removeItem('userName');
 
         //change log status 
-        if (isLogged) {props.changeLogStatus()};
+        if (isLogged) {props.changeLogStatus(false)};
     }
 
     return (
