@@ -3,7 +3,7 @@ import React from 'react'
 const PostPhoto = (props) => {
 
     const errorHandler=(e)=>{
-        const imageUrl=`https://picsum.photos/id/${Math.floor(Math.random()*9)+1}/400/450`
+        const imageUrl=`https://picsum.photos/id/${Math.floor(Math.random()*9)+1}/300/240`
         
        e.target.src=imageUrl
         }

@@ -1,4 +1,6 @@
 .postCard {
+  display: flex;
+  flex-direction: column;
   background-color: #c0d8f0;
   border: white solid 10px;
   margin-bottom: 20px;
@@ -6,17 +8,19 @@
 }
 
 .picture{
-    width: 100%;
-    box-sizing: border-box;
+  height: 100%;
+  width: 100%;
+  box-sizing: border-box;
 }
 
 .imgContainer{
   width: 100%;
-  height: 300px;
+  flex: 70%;
   background-color: #c0d8f0;
 }
 
 .contentContainer{
+  flex: 30%;
   padding: 15px 15px;
 }
 
