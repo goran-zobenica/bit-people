@@ -1,8 +1,15 @@
 import React from 'react'
 
 const PostPhoto = (props) => {
+
+    const errorHandler=(e)=>{
+        const imageUrl=`https://picsum.photos/id/${Math.floor(Math.random()*9)+1}/400/450`
+        
+       e.target.src=imageUrl
+        }
+
     return (
-        <img src={props.photo} className="picture" alt="Could not be loaded"></img>
+        <img src={props.photo} className="picture" onError={errorHandler} alt="Wrong URL"></img>
     )
 }
 
