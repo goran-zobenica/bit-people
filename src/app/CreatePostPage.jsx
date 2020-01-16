@@ -60,28 +60,37 @@ const CreatePostPage = (props) => {
         <div className="CreatePostPage row">
             <div className="col">
                 <h2>Create Post</h2>
-                <div className="createPostContainer">
-                    <label>Title: <br />
-                        <Input className="inputTitle reset" type="text" placeholder="Post Title" onChange={getTitle} />
-                    </label>
-                    <label>Subtitle: <br />
-                        <Input className="inputSubtitle reset" type="text" placeholder="Post subtitle" onChange={getSubtitle} />
-                    </label>
-                    <br />
-                    <Input className="inputImgUrl reset" type="text" placeholder="Image URL" onChange={getPhoto} />
-                    <span>Private</span>
-                    <label className="switch">
-                        <Checkbox type="checkbox" nameClass="checkReset" onChange={getCheckValue} />
-                        <span className="slider round"></span>
-                    </label>
-                    <span>Public</span>
-                    <br />
-                    <label>Text of post: <br />
-                        <Input className="inputPostText reset" type="text" onChange={getContent} />
-                    </label>
-                    <br />
-                    <Button value='SAVE' className='saveButton' onClick= {makePost} />
+                <div className="row createPostContainer">
+                    <div className="col-md-6">
+                        <label className="width">Title: <br />
+                            <Input className="inputTitle reset" type="text" placeholder="Post Title" onChange={getTitle} />
+                        </label>
+                    </div>
+                    <div className="col-md-6">
+                        <label className="width">Subtitle: <br />
+                            <Input className="inputSubtitle reset" type="text" placeholder="Post subtitle" onChange={getSubtitle} />
+                        </label>
+                    </div>
+                    <div className="col-md-6">
+                        <Input className="inputImgUrl reset" type="text" placeholder="Image URL" onChange={getPhoto} />
+                    </div>
+                    <div className="col-md-6">
+                        <span>Private</span>
+                        <label className="switch">
+                            <Checkbox type="checkbox" nameClass="checkReset" onChange={getCheckValue} />
+                            <span className="slider round"></span>
+                        </label>
+                        <span>Public</span>
+                    </div>
+                    <div className="col-md-6">
+                        <label className="postText width">Text of post: <br />
+                            <Input className="inputPostText reset" type="text" onChange={getContent} />
+                        </label>
+                    </div>
+                    <div className="col-md-6">
+                    <Button value='SAVE' className='saveButton' onClick={makePost} />
                     <Message text="Post successfully created" className="messageHide" />
+                </div>
                 </div>
             </div>
         </div>

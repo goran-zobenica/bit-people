@@ -58,35 +58,40 @@ h2 {
 }
 
 .createPostContainer {
-  width: 800px;
+  align-items: center;
+  width: 100%;
   margin-right: auto;
   margin-left: auto;
-}
+
+  .width{
+    width: 100%;
+  }
+  }
 
 .inputTitle {
-  margin: 10px;
-  width: 380px;
+  width: 100%;
 }
 
 .inputSubtitle {
-  margin: 10px;
-  width: 380px;
+  width: 100%;
 }
 
 .inputImgUrl {
-  margin: 10px;
-  width: 380px;
+  width: 100%;
 }
 
 .inputPostText {
-  margin: 10px;
-  width: 780px;
+  width: 100%;
+}
+
+.postText{
+    width: 100%;
 }
 
 .saveButton {
-  float: right;
-  margin: 10px;
-  width: 20%;
+  display: block;
+  margin: 20px auto;
+  width: 60%;
   height: 35px;
   color: white;
   font-weight: bolder;
