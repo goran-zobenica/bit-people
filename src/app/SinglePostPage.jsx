@@ -27,7 +27,7 @@ const SinglePostPage = (props) => {
                 setText(result.text)
                 setLoading(false)
             })
-    }, [])
+    }, [props.match.params.id])
 
     const getTitle = (title) => { setTitle(title) }
     const getSubtitle = (subtitle) => { setSubtitle(subtitle) }
