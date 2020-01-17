@@ -5,7 +5,7 @@ import Footer from './components/Footer'
 
 const App = () => {
   const [isLogged, setIsLogged] = useState(!!localStorage.getItem("isLogged"));
-  const [userName, setUserName] = useState(localStorage.getItem("userName"))
+  const [userName, setUserName] = useState(localStorage.getItem("userName"));
 
   const changeLogStatus = () => {
     setIsLogged(!isLogged)

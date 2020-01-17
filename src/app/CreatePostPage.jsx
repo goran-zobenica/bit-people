@@ -89,8 +89,8 @@ const CreatePostPage = (props) => {
                     </div>
                     <div className="col-md-6">
                     <Button value='SAVE' className='saveButton' onClick={makePost} />
-                    <Message text="Post successfully created" className="messageHide" />
                 </div>
+                    <Message text="Post successfully created" className="messageHide" />
                 </div>
             </div>
         </div>

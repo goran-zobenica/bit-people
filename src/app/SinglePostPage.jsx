@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import Input from './components/Input'
 import Button from './components/Button'
 import { fetchSinglePost, updatePost, deleteSinglePost } from "../services/postServices"
@@ -6,127 +6,93 @@ import Loader from './components/Loader'
 import Message from './components/Message'
 import { popUp } from '../shared/popUpMessage'
 
+const SinglePostPage = (props) => {
 
-class SinglePostPage extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            data: {
-                sid: "",
-                title: "",
-                subtitle: "",
-                imageUrl: "",
-                text: ""
-            },
-            loading: true,
-            messageAction: ""
-        }
-    }
+    const [sid, setSid] = useState("");
+    const [title, setTitle] = useState("");
+    const [subtitle, setSubtitle] = useState("");
+    const [imageUrl, setImageUrl] = useState("");
+    const [text, setText] = useState("");
+    const [loading, setLoading] = useState(true);
+    const [messageAction, setMessageAction] = useState("");
 
-    componentDidMount() {
+    useEffect(() => {
         let token = localStorage.getItem("currentUser")
-        fetchSinglePost(this.props.match.params.id, token)
-            .then(result => this.setState(
-                {
-                    data: {
-                        title: result.title,
-                        subtitle: result.subtitle,
-                        imageUrl: result.imageUrl,
-                        text: result.text,
-                        sid: result.sid
-                    },
-                    loading: false
-                }))
-    }
-
-    getTitle = (title) => {
-        this.setState((prevState) => ({
-            data: {
-                ...prevState.data,
-                title
-            }
-        }))
-    }
-
-    getSubtitle = (subtitle) => {
-        this.setState((prevState) => ({
-            data: {
-                ...prevState.data,
-                subtitle
-            }
-        }))
-    }
-
-    getImageUrl = (ImageUrl) => {
-        this.setState((prevState) => ({
-            data: {
-                ...prevState.data,
-                ImageUrl
-            }
-        }))
-    }
-
-    getText = (text) => {
-        this.setState((prevState) => ({
-            data: {
-                ...prevState.data,
-                text
-            }
-        }))
-    }
-
-    updatePost = () => {
-        let token = localStorage.getItem("currentUser")
-        this.setState({ messageAction: "updated!" })
-        updatePost(this.props.match.params.id, this.state.data, token)
+        fetchSinglePost(props.match.params.id, token)
             .then(result => {
-                popUp()
-                setTimeout(() => {
-                    this.props.history.push('/myposts')
-                }, 2000);
+                setSid(result.sid)
+                setTitle(result.title)
+                setSubtitle(result.subtitle)
+                setImageUrl(result.imageUrl)
+                setText(result.text)
+                setLoading(false)
             })
+    }, [])
 
-    }
-    deletePost = () => {
+    const getTitle = (title) => { setTitle(title) }
+    const getSubtitle = (subtitle) => { setSubtitle(subtitle) }
+    const getImageUrl = (imageUrl) => { setImageUrl(imageUrl) }
+    const getText = (text) => { setText(text) }
+
+    const changePostData = () => {
         let token = localStorage.getItem("currentUser")
-        this.setState({ messageAction: "deleted!" })
-        deleteSinglePost(this.props.match.params.id, this.state.data, token)
+        updatePost(props.match.params.id, { sid, title, subtitle, imageUrl, text }, token)
             .then(result => {
+
+                if (!result.error) {
+                    setMessageAction("Post successfully updated!")
+                } else {
+                    setMessageAction(result.error)
+                }
+
                 popUp()
                 setTimeout(() => {
-                    this.props.history.push('/myposts')
+                    props.history.push('/myposts')
                 }, 2000);
             })
     }
 
-    render() {
+    const deletePost = () => {
+        let token = localStorage.getItem("currentUser")
+        deleteSinglePost(props.match.params.id, {}, token)
+            .then(result => {
 
-        if (this.state.loading) {
-            return <Loader />
-        }
+                if (!result.error) {
+                    setMessageAction("Post successfully deleted!")
+                } else {
+                    setMessageAction(result.error)
+                }
 
-        return (
-            <div className="singlePostPage row">
-                <div className="col">
-                    <h2>Update post</h2>
-                    <p><span className="headStyle">Title:</span><br />
-                        <Input type="text" placeholder="Enter title here" value={this.state.data.title} className="inputTitleName" onChange={this.getTitle} required />
-                    </p>
-                    <p><span className="headStyle">Subtitle:</span><br />
-                        <Input type="text" placeholder="Enter subtitle here" value={this.state.data.subtitle} className="inputSubtitleName" onChange={this.getSubtitle} required />
-                    </p>
-                    <Input type="text" placeholder="Image URL" value={this.state.data.imageUrl} className="enterImageURL" onChange={this.getImageUrl} required />
-                    <p><span className="headStyle">Text of post:</span><br />
-                        <Input type="text" placeholder="Enter text here" value={this.state.data.text} className="inputTextOfPost" onChange={this.getText} required />
-                    </p>
-                    <Button value="DELETE" className="deletePost" onClick={this.deletePost} />
-                    <Button value="SAVE" className="savePost" onClick={this.updatePost} />
-                    <Message text={`Post successfully ${this.state.messageAction}!`} className="messageHide" />
-                </div>
+                popUp()
+                setTimeout(() => {
+                    props.history.push('/myposts')
+                }, 2000);
+            })
+    }
+    if (loading) {
+        return <Loader />
+    }
+
+    return (
+        <div className="singlePostPage row">
+            <div className="col">
+                <h2>Update post</h2>
+                <p><span className="headStyle">Title:</span><br />
+                    <Input type="text" placeholder="Enter title here" value={title} className="inputTitleName" onChange={getTitle} required />
+                </p>
+                <p><span className="headStyle">Subtitle:</span><br />
+                    <Input type="text" placeholder="Enter subtitle here" value={subtitle} className="inputSubtitleName" onChange={getSubtitle} required />
+                </p>
+                <Input type="text" placeholder="Image URL" value={imageUrl} className="enterImageURL" onChange={getImageUrl} required />
+                <p><span className="headStyle">Text of post:</span><br />
+                    <Input type="text" placeholder="Enter text here" value={text} className="inputTextOfPost" onChange={getText} required />
+                </p>
+                <Button value="DELETE" className="deletePost" onClick={deletePost} />
+                <Button value="SAVE" className="savePost" onClick={changePostData} />
+                <Message text={messageAction} className="messageHide" />
             </div>
-        )
-    }
-
+        </div>
+    )
 }
 
 export default SinglePostPage
