@@ -48,7 +48,7 @@ const SinglePostPage = (props) => {
                 popUp()
                 setTimeout(() => {
                     props.history.push('/myposts')
-                }, 2000);
+                }, 1500);
             })
     }
 
@@ -66,7 +66,7 @@ const SinglePostPage = (props) => {
                 popUp()
                 setTimeout(() => {
                     props.history.push('/myposts')
-                }, 2000);
+                }, 1500);
             })
     }
     if (loading) {

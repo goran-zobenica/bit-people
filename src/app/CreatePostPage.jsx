@@ -51,7 +51,7 @@ const CreatePostPage = (props) => {
             createPost(data, token)
                 .then(() => {
                     popUp()
-                    setTimeout(() => props.history.push("/myposts"), 2000)
+                    setTimeout(() => props.history.push("/myposts"), 1500)
                 })
         }
     }

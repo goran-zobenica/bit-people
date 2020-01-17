@@ -23,8 +23,8 @@ h2 {
   line-height: 100%;
   font-size: 2em;
   animation-name: message;
-  animation-duration: 2s;
-  animation-timing-function: ease;
+  animation-duration: 1.5s;
+  animation-timing-function: cubic-bezier(0,1.68,.65,.77);
   z-index: 3;
 }
 
