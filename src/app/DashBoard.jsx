@@ -1,75 +1,77 @@
-import React from 'react'
-import post from '../images/post.png'
-import text from '../images/text.png'
-import users from '../images/users.svg'
+import React, { useState, useEffect } from 'react'
+import postsIcon from '../images/post.png'
+import textIcon from '../images/text.png'
+import usersIcon from '../images/users.svg'
 import { fetchPosts, fetchComments } from '../services/postServices'
 import { fetchUsers } from '../services/userServices'
 
-class Dashboard extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            posts: [],
-            users: [],
-            comments: [],
-            loadingPosts: true,
-            loadingUsers: true,
-            loadingComments: true
-        }
-    }
-    getPosts = () => {
+const Dashboard = (props) => {
+    const [posts, setPosts] = useState([])
+    const [users, setUsers] = useState([])
+    const [comments, setComments] = useState([])
+    const [loadingPosts, setLoadingPosts] = useState(true)
+    const [loadingUsers, setLoadingUsers] = useState(true)
+    const [loadingComments, setLoadingComments] = useState(true)
+
+    useEffect(() => {
+        getComments()
+        getPosts()
+        getUser()
+    }, [])
+
+    const getPosts = () => {
         fetchPosts()
-            .then(posts => this.setState({ posts, loadingPosts: false }))
+            .then(posts => {
+                setPosts(posts)
+                setLoadingPosts(false)
+            })
     }
-    getUser = () => {
+
+    const getUser = () => {
         fetchUsers()
-            .then(users => this.setState({ users, loadingUsers: false }))
+            .then(users => {
+                setUsers(users)
+                setLoadingUsers(false)
+            })
     }
-    getComments = () => {
+
+    const getComments = () => {
         fetchComments()
-            .then(comments => this.setState({ comments, loadingComments: false }))
+            .then(comments => {
+                setComments(comments)
+                setLoadingComments(false)
+            })
     }
 
-    componentDidMount() {
-        this.getComments()
-        this.getPosts()
-        this.getUser()
-
+    const Loading = (props) => {
+        if (props.flag) { return <span>Loading...</span> }
+        return <> </>
     }
 
-    render() {
-
-        const Loading = (props) => {
-            if (props.flag) { return <span>Loading...</span> }
-            return <> </>
-        }
-
-        return (
-            <div className='row' >
-                <div className="col">
-                    <h2>Dashboard</h2>
-                    <div className='row'>
-                        <div className='dashboard col-xl-4' onClick={() => this.props.history.push('/posts')}>
-                            <img src={post} className="postPhoto" alt=""></img>
-                            <p> <Loading flag={this.state.loadingPosts} />{this.state.posts.length}</p>
-                            <p>Total posts</p>
-                        </div>
-                        <div className='dashboard col-xl-4'>
-                            <img src={text} className="textPhoto" alt=""></img>
-                            <p><Loading flag={this.state.loadingUsers} />{this.state.comments.length}</p>
-                            <p>Total comments</p>
-                        </div>
-                        <div className='dashboard col-xl-4'>
-                            <img src={users} className="usersPhoto" alt=""></img>
-                            <p><Loading flag={this.state.loadingComments} />{this.state.users.length}</p>
-                            <p>Users</p>
-                        </div>
+    return (
+        <div className='row' >
+            <div className="col">
+                <h2>Dashboard</h2>
+                <div className='row'>
+                    <div className='dashboard col-xl-4' onClick={() => props.history.push('/posts')}>
+                        <img src={postsIcon} className="postPhoto" alt=""></img>
+                        <p> <Loading flag={loadingPosts} />{posts.length}</p>
+                        <p>Total posts</p>
+                    </div>
+                    <div className='dashboard col-xl-4'>
+                        <img src={textIcon} className="textPhoto" alt=""></img>
+                        <p><Loading flag={loadingUsers} />{comments.length}</p>
+                        <p>Total comments</p>
+                    </div>
+                    <div className='dashboard col-xl-4'>
+                        <img src={usersIcon} className="usersPhoto" alt=""></img>
+                        <p><Loading flag={loadingComments} />{users.length}</p>
+                        <p>Users</p>
                     </div>
                 </div>
             </div>
-        )
-    }
-
+        </div>
+    )
 }
 
 export default Dashboard

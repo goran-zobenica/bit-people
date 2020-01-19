@@ -1,52 +1,44 @@
-import React from 'react'
+import React, { useState, useEffect } from 'react'
 import PostsList from './components/PostsList'
 import { fetchUserPosts } from "../services/postServices"
 import Button from "./components/Button"
 import { Link } from 'react-router-dom'
 import Loader from './components/Loader'
 
-class MyPosts extends React.Component {
-    constructor(props) {
-        super(props)
-        this.state = {
-            posts: [],
-            loading: true,
-        }
-    }
+const MyPosts = (props) => {
+    const [posts, setPosts] = useState([])
+    const [loading, setLoading] = useState(true)
 
-    componentDidMount() {
-
+    useEffect(() => {
         if (localStorage.getItem('userId')) {
             fetchUserPosts(localStorage.getItem('userId'))
                 .then(posts => {
-                    this.setState({ posts, loading: false });
+                    setPosts(posts);
+                    setLoading(false);
                 })
         }
-    }
+    }, [])
 
-    render() {
-        if (this.state.loading) {
-            return (
-                <div className="row">
-                    <div className="col">
-                        <Loader />
-                    </div>
-                </div>
-            )
-        }
+    if (loading) {
         return (
             <div className="row">
                 <div className="col">
-                    <h2>My Posts</h2>
-                    <Link to="/new_post" >
-                        <Button value='NEW POST' className='newPostButtonMyPosts' onClick={() => { return }} />
-                    </Link>
-                    <PostsList posts={this.state.posts} />
+                    <Loader />
                 </div>
             </div>
         )
     }
-
+    return (
+        <div className="row">
+            <div className="col">
+                <h2>My Posts</h2>
+                <Link to="/new_post" >
+                    <Button value='NEW POST' className='newPostButtonMyPosts' onClick={() => {}} />
+                </Link>
+                <PostsList posts={posts} />
+            </div>
+        </div>
+    )
 }
 
 export default MyPosts
